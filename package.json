@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "exprss": "0.0.1-security"
   },
   "repository": {
@@ -20,5 +20,6 @@
   "bugs": {
     "url": "https://github.com/rtanguyen/note-taker/issues"
   },
-  "homepage": "https://github.com/rtanguyen/note-taker#readme"
+  "homepage": "https://github.com/rtanguyen/note-taker#readme",
+  "devDependencies": {}
 }
