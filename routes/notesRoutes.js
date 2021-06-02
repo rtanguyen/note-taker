@@ -31,14 +31,14 @@ function validateNote(note) {
 
 //======ROUTES======//
 router.get('/db', (req, res) => {
-    fs.readFile(("../db/db.json"), function (err, notesData) {
-        if (err) {
-            throw err
-        } else {
-            console.log(notesData)
-        }
-    }
-    );
+    // fs.readFile(('../db/db.json'), function (err, notesData) {
+    //     if (err) {
+    //         throw err
+    //     } else {
+    //         console.log(notesData)
+    //     }
+    // }
+    // );
     res.json(notes);
 });
 
