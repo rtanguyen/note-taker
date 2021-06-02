@@ -1,8 +1,12 @@
 {
     "notes": [
-      {
-        "title":"Test Title",
-        "text":"Test text"
-      }
+        {
+          "title":"Test Title",
+          "text":"Test text"
+        },
+        {
+          "title":"Review module 12",
+          "text":"Go over lessons 1 and 2 of module 12: SQL"
+        }
     ]
 }
