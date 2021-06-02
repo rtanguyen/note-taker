@@ -1,8 +1,10 @@
 const router = require('express').Router()
 const fs = require('fs');
 const path = require("path");
+const { v4: uuidv4 } = require('uuid');
 
 const {notes} = require('../db/db.json')
+
 
 
 
@@ -14,7 +16,6 @@ function addNewNote(body, notesArr) {
         path.join(__dirname, '../db/db.json'),
         JSON.stringify({notes: notesArr}, null, 2)
     );
-
     return newNote;
 }
 
@@ -43,9 +44,9 @@ router.get('/db', (req, res) => {
 });
 
 router.post('/db', (req, res) => {
-    // console.log(req.body);
-    req.body.id = notes.length.toString();
-
+    req.body.id = uuidv4();
+    console.log(req.body);
+    
     if (!validateNote(req.body)) {
         res.status(400).send('Note is not properly formatted.');
     } else {
