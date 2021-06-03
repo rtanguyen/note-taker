@@ -19,40 +19,31 @@ function addNewNote(body, notesArr) {
     return newNote;
 }
 
-function validateNote(note) {
-    if (!note.title || typeof note.title !=='string') {
-        return false;
-    }
-    if (!note.text || typeof note.text !=='string') {
-        return false;
-    }
-    return true;
-};
-
+function deleteNote(id, notes) {
+    const result = notes.filter((notes) => notes.id === id)[0];
+    return result;
+}
 
 //======ROUTES======//
-router.get('/db', (req, res) => {
-    // fs.readFile(('../db/db.json'), function (err, notesData) {
-    //     if (err) {
-    //         throw err
-    //     } else {
-    //         console.log(notesData)
-    //     }
-    // }
-    // );
+router.get('/notes', (req, res) => {
     res.json(notes);
 });
 
-router.post('/db', (req, res) => {
+router.post('/notes', (req, res) => {
     req.body.id = uuidv4();
     console.log(req.body);
-    
-    if (!validateNote(req.body)) {
-        res.status(400).send('Note is not properly formatted.');
-    } else {
-        const newNote = addNewNote(req.body, notes);
-        res.json(newNote);
-    }
+    const newNote = addNewNote(req.body, notes);
+    res.json(newNote);
+
+});
+
+//TODO: delete
+router.delete('/notes/:id', (req, res) => {
+const noteId = req.params.id;
+const filteredNotes = notes.filter((notes) => notes.id !== noteId);
+
+notes = filteredNotes;
+res.json(notes);
 });
 
 module.exports = router;
