@@ -3,12 +3,8 @@ const fs = require('fs');
 const path = require("path");
 const { v4: uuidv4 } = require('uuid');
 
-const {notes} = require('../db/db.json')
+let {notes} = require('../db/db.json')
 
-
-
-
-//======FUNCTIONS======//
 function addNewNote(body, notesArr) {
     const newNote = body;
     notesArr.push(newNote);
@@ -19,12 +15,7 @@ function addNewNote(body, notesArr) {
     return newNote;
 }
 
-function deleteNote(id, notes) {
-    const result = notes.filter((notes) => notes.id === id)[0];
-    return result;
-}
-
-//======ROUTES======//
+//================ROUTES================//
 router.get('/notes', (req, res) => {
     res.json(notes);
 });
@@ -41,7 +32,10 @@ router.post('/notes', (req, res) => {
 router.delete('/notes/:id', (req, res) => {
 const noteId = req.params.id;
 const filteredNotes = notes.filter((notes) => notes.id !== noteId);
-
+fs.writeFileSync(
+    path.join(__dirname, '../db/db.json'),
+    JSON.stringify({notes: filteredNotes}, null, 2)
+);
 notes = filteredNotes;
 res.json(notes);
 });
